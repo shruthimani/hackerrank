@@ -2,20 +2,16 @@
 LINK : https://www.hackerrank.com/challenges/detect-whether-a-linked-list-contains-a-cycle
 */
 
-boolean hasCycle(Node head) 
-{
-    int count = 0;
-    Node current = head;
-    if(head == null)
-        return false;
-    while(current.next != null)
-    {
-            count++;
-            if(count >  100)
-                return true; 
-            current = current.next;
-    }
-       if(current == null)
-        return true;
+boolean hasCycle(Node node) {
+        Node slow = node, fast = node;
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+ 
+            // If slow and fast meet at same point then loop is present
+            if (slow == fast) {
+                return true;
+            }
+        }
     return false;
 }
